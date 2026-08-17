@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>ZYRON Game Optimizer</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#020617 url("background.png") center top / cover no-repeat;
+    color:#fff;
+    font-family:Arial,Tahoma,sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+        180deg,
+        rgba(2,8,23,.15),
+        rgba(2,8,23,.55)
+    );
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:8px;
+    z-index:100;
+    margin:10px auto;
+    width:min(1180px,96%);
+    min-height:64px;
+    padding:10px 18px;
+    border:1px solid #3479ff66;
+    border-radius:18px;
+    background:#050d20dd;
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 25px #0066ff22;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-logo{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#071a46,#11105b);
+    border:1px solid #5b7dff88;
+    font-size:24px;
+    font-weight:900;
+    color:#20bfff;
+}
+
+.brand-name{
+    font-size:20px;
+    font-weight:900;
+}
+
+.brand-name span{
+    color:#18baff;
+}
+
+.nav{
+    display:flex;
+    gap:7px;
+}
+
+.nav button{
+    border:0;
+    background:transparent;
+    color:#aab6d1;
+    padding:11px 15px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:linear-gradient(135deg,#7928ff,#4c4cff);
+    color:#fff;
+}
+
+.ready{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#b9c5df;
+    font-size:12px;
+}
+
+.ready-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#22e77b;
+    box-shadow:0 0 12px #22e77b;
+}
+
+/* CONTAINER */
+
+.container{
+    width:min(1180px,96%);
+    margin:auto;
+}
+
+/* HERO */
+
+.hero{
+    margin-top:18px;
+    min-height:350px;
+    padding:40px 35px;
+    border-radius:28px;
+    border:1px solid #367dff77;
+    background:rgba(5,13,35,.72);
+    backdrop-filter:blur(5px);
+    box-shadow:
+        0 0 50px #0055ff20,
+        inset 0 0 60px #1649ff13;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-content{
+    text-align:center;
+    flex:1;
+    z-index:2;
+}
+
+.hero-logo{
+    width:280px;
+    min-width:200px;
+    height:250px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    font-weight:1000;
+    color:white;
+    text-shadow:
+        0 0 15px #00c8ff,
+        0 0 35px #5147ff;
+}
+
+.hero-content h1{
+    font-size:58px;
+    font-weight:1000;
+    font-style:italic;
+    letter-spacing:4px;
+    background:linear-gradient(90deg,#00d9ff,#5f7cff,#d83cff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-content h2{
+    color:#dbe4ff;
+    font-size:25px;
+    margin-top:4px;
+}
+
+.hero-content p{
+    color:#aab8d8;
+    margin-top:12px;
+    line-height:1.8;
+}
+
+.hero-badges{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:20px;
+}
+
+.badge{
+    padding:9px 15px;
+    border:1px solid #4078ff55;
+    background:#071638aa;
+    border-radius:30px;
+    font-size:12px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:22px;
+    flex-wrap:wrap;
+}
+
+.main-btn{
+    border:0;
+    border-radius:14px;
+    padding:14px 28px;
+    font-weight:900;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(135deg,#7c2cff,#4d4dff);
+    box-shadow:0 8px 25px #6a2cff44;
+}
+
+.share-btn{
+    background:linear-gradient(135deg,#19e56c,#00a879);
+}
+
+.main-btn:active{
+    transform:scale(.96);
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:18px;
+    padding:24px;
+    border-radius:25px;
+    border:1px solid #276eff55;
+    background:rgba(7,22,51,.82);
+    backdrop-filter:blur(7px);
+    box-shadow:
+        0 0 30px #0055ff12,
+        inset 0 0 30px #285cff08;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    color:#38cfff;
+    font-size:22px;
+}
+
+.section-title span{
+    color:#7889b2;
+    font-size:12px;
+}
+
+/* PHONE */
+
+.phone-layout{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:20px;
+}
+
+.phone-image{
+    min-height:180px;
+    border-radius:20px;
+    border:1px solid #3879ff55;
+    background:#081633dd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:65px;
+}
+
+.phone-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.field{
+    background:#081331dd;
+    border:1px solid #274a8b;
+    border-radius:14px;
+    padding:13px;
+}
+
+.field label{
+    display:block;
+    color:#a8b6d4;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.field select{
+    width:100%;
+    background:#050b20;
+    color:#fff;
+    border:1px solid #263f73;
+    padding:10px;
+    border-radius:9px;
+    outline:none;
+}
+
+.device-result{
+    margin-top:15px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.device-chip{
+    padding:13px;
+    border-radius:13px;
+    background:#071b39;
+    border:1px solid #2261a855;
+    text-align:center;
+    color:#b8c8e9;
+}
+
+.device-chip strong{
+    display:block;
+    color:#fff;
+    margin-top:4px;
+}
+
+/* GAMES */
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:12px;
+}
+
+.game{
+    position:relative;
+    min-height:180px;
+    padding:10px;
+    border-radius:17px;
+    background:#091a3bee;
+    border:1px solid #28529a;
+    cursor:pointer;
+    text-align:center;
+    transition:.2s;
+}
+
+.game:hover{
+    transform:translateY(-4px);
+    border-color:#8b5cff;
+}
+
+.game.selected{
+    border-color:#00d9ff;
+    box-shadow:
+        0 0 25px #00bfff44,
+        inset 0 0 20px #00bfff12;
+}
+
+.game-check{
+    position:absolute;
+    top:7px;
+    right:7px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background:#20df76;
+    color:#001a0b;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.game.selected .game-check{
+    display:flex;
+}
+
+.game-logo{
+    width:92px;
+    height:92px;
+    margin:5px auto 9px;
+    border-radius:18px;
+    background:#101d3e;
+    border:1px solid #4266a8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    overflow:hidden;
+}
+
+.game-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+}
+
+.game h3{
+    font-size:13px;
+}
+
+.game p{
+    color:#7f90b3;
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* SETTINGS */
+
+.settings{
+    display:grid;
+    grid-template-columns:1.1fr 1fr 1fr;
+    gap:15px;
+}
+
+.setting-box{
+    background:#081633ee;
+    border:1px solid #284c8d;
+    border-radius:18px;
+    padding:18px;
+}
+
+.setting-box h3{
+    color:#dbe6ff;
+    margin-bottom:14px;
+}
+
+.setting-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px;
+    margin-top:8px;
+    background:#061027;
+    border-radius:11px;
+}
+
+.setting-row span{
+    color:#b3c0da;
+    font-size:13px;
+}
+
+.setting-row strong{
+    color:#3ed9ff;
+}
+
+.range{
+    width:100%;
+    accent-color:#7c4dff;
+}
+
+/* PERFORMANCE */
+
+.sensitivity{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:15px;
+}
+
+.score-box,
+.recommendation{
+    background:#071633ee;
+    border:1px solid #2b4d8e;
+    border-radius:18px;
+    padding:20px;
+}
+
+.scores{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.score{
+    padding:15px;
+    text-align:center;
+    border-radius:15px;
+    background:#050d23;
+    border:1px solid #29467c;
+}
+
+.score-number{
+    font-size:28px;
+    font-weight:900;
+    color:#20d5ff;
+}
+
+.score-name{
+    font-size:11px;
+    color:#8898b9;
+    margin-top:5px;
+}
+
+.recommendation h3{
+    color:#ffcf32;
+    margin-bottom:15px;
+}
+
+.recommendation-row{
+    display:flex;
+    justify-content:space-between;
+    padding:13px;
+    margin-top:8px;
+    border-radius:11px;
+    background:#050e25;
+}
+
+.recommendation-row span{
+    color:#aab9d7;
+}
+
+.recommendation-row strong{
+    color:#fff;
+}
+
+/* TIPS */
+
+.tips{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.tip{
+    padding:20px;
+    border-radius:18px;
+    border:1px solid #3c4f8e;
+    background:#071532ee;
+}
+
+.tip h3{
+    margin-bottom:10px;
+}
+
+.tip p{
+    color:#8798bb;
+    font-size:12px;
+    line-height:1.8;
+}
+
+/* CODES */
+
+.codes-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.code-card{
+    background:#081633ee;
+    border:1px solid #284c8d;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.code-card h3{
+    color:#dbe6ff;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.code-card p{
+    color:#8798bb;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.code-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:#050d23;
+    border:1px solid #274a8b;
+    padding:10px 14px;
+    border-radius:12px;
+}
+
+.code-box code{
+    color:#20d5ff;
+    font-weight:bold;
+    font-family:monospace;
+    font-size:16px;
+    direction:ltr;
+}
+
+.copy-btn{
+    background:linear-gradient(135deg,#7c2cff,#4d4dff);
+    color:#fff;
+    border:0;
+    padding:6px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.copy-btn:active{
+    transform:scale(.95);
+}
+
+/* FOOTER */
+
+footer{
+    margin:18px 0;
+    padding:22px;
+    text-align:center;
+    border:1px solid #254577;
+    border-radius:18px;
+    color:#7384a7;
+    font-size:11px;
+    background:#050d20dd;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:22px;
+    left:50%;
+    transform:translate(-50%,120px);
+    opacity:0;
+    z-index:999;
+    width:min(90%,430px);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    background:#111c38;
+    border:1px solid #5373bb;
+    box-shadow:0 10px 40px #000b;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .games{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .hero{
+        flex-direction:column;
+        padding:28px 18px;
+    }
+
+    .hero-logo{
+        height:130px;
+    }
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .games{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .settings,
+    .sensitivity{
+        grid-template-columns:1fr;
+    }
+
+    .phone-layout{
+        grid-template-columns:1fr;
+    }
+
+    .codes-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:560px){
+
+    .nav{
+        display:none;
+    }
+
+    .hero-content h1{
+        font-size:35px;
+    }
+
+    .hero-content h2{
+        font-size:18px;
+    }
+
+    .hero-logo{
+        font-size:45px;
+        height:90px;
+    }
+
+    .phone-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .device-result{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .games{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .tips{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="brand">
+
+    <div class="brand-logo">
+        Z
+    </div>
+
+    <div class="brand-name">
+        <span>ZYRON</span>
+        Game Optimizer
+    </div>
+
+</div>
+
+<nav class="nav">
+
+    <button class="active" onclick="goTop()">
+        الرئيسية
+    </button>
+
+    <button onclick="scrollToSection('phone')">
+        الهاتف
+    </button>
+
+    <button onclick="scrollToSection('games')">
+        الألعاب
+    </button>
+
+    <button onclick="scrollToSection('settings')">
+        الإعدادات
+    </button>
+
+</nav>
+
+<div class="ready">
+
+    <div class="ready-dot"></div>
+
+    جاهز للعمل
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-logo">
+    ZYRON
+</div>
+
+<div class="hero-content">
+
+<h1>
+    ZYRON
+</h1>
+
+<h2>
+    GAME OPTIMIZER
+</h2>
+
+<p>
+    إعدادات احترافية للألعاب
+    حسب مواصفات هاتفك
+</p>
+
+<div class="hero-badges">
+
+<div class="badge">
+    ⚡ تحسين الأداء
+</div>
+
+<div class="badge">
+    🎯 حساسية دقيقة
+</div>
+
+<div class="badge">
+    📱 توافق مع جهازك
+</div>
+
+<div class="badge">
+    ⚽ إعدادات eFootball
+</div>
+
+</div>
+
+<div class="hero-buttons">
+
+<button
+class="main-btn"
+onclick="generateSettings()">
+
+🚀 إنشاء الإعدادات
+
+</button>
+
+<button
+class="main-btn share-btn"
+onclick="shareLink()">
+
+📱 مشاركة الرابط
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PHONE -->
+
+<section class="section" id="phone">
+
+<div class="section-title">
+
+<h2>
+    📱 معلومات الهاتف
+</h2>
+
+<span>
+    اختر مواصفات جهازك
+</span>
+
+</div>
+
+<div class="phone-layout">
+
+<div class="phone-image">
+    📱
+</div>
+
+<div>
+
+<div class="phone-grid">
+
+
+<div class="field">
+
+<label>
+    شركة الهاتف
+</label>
+
+<select id="brand">
+
+<option value="">
+    اختر الشركة
+</option>
+
+<option>Samsung</option>
+<option>Xiaomi</option>
+<option>Redmi</option>
+<option>POCO</option>
+<option>OPPO</option>
+<option>Realme</option>
+<option>Huawei</option>
+<option>Honor</option>
+<option>OnePlus</option>
+<option>vivo</option>
+<option>Infinix</option>
+<option>Tecno</option>
+<option>Apple</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    ذاكرة الهاتف
+</label>
+
+<select id="storage">
+
+<option value="">
+    اختر الذاكرة
+</option>
+
+<option>32GB</option>
+<option>64GB</option>
+<option>128GB</option>
+<option>256GB</option>
+<option>512GB</option>
+<option>1TB</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    RAM
+</label>
+
+<select id="ram">
+
+<option value="">
+    اختر RAM
+</option>
+
+<option value="2">2GB</option>
+<option value="3">3GB</option>
+<option value="4">4GB</option>
+<option value="6">6GB</option>
+<option value="8">8GB</option>
+<option value="12">12GB</option>
+<option value="16">16GB</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    المعالج
+</label>
+
+<select id="cpu">
+
+<option value="">
+    اختر المعالج
+</option>
+
+<option>ضعيف</option>
+<option>متوسط</option>
+<option>قوي</option>
+<option>قوي جداً</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    جودة الشاشة
+</label>
+
+<select id="quality">
+
+<option value="">
+    اختر الجودة
+</option>
+
+<option>HD</option>
+<option>FHD</option>
+<option>FHD+</option>
+<option>2K</option>
+<option>4K</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    معدل التحديث
+</label>
+
+<select id="hz">
+
+<option>
+    60Hz
+</option>
+
+<option>
+    90Hz
+</option>
+
+<option>
+    120Hz
+</option>
+
+<option>
+    144Hz
+</option>
+
+<option>
+    165Hz
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="device-result">
+
+<div class="device-chip">
+    الشركة
+    <strong id="showBrand">--</strong>
+</div>
+
+<div class="device-chip">
+    RAM
+    <strong id="showRam">--</strong>
+</div>
+
+<div class="device-chip">
+    المعالج
+    <strong id="showCpu">--</strong>
+</div>
+
+<div class="device-chip">
+    الشاشة
+    <strong id="showHz">--</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GAMES -->
+
+<section class="section" id="games">
+
+<div class="section-title">
+
+<h2>
+    🎮 اختر اللعبة
+</h2>
+
+<span>
+    اختر اللعبة للحصول على إعداداتها
+</span>
+
+</div>
+
+
+<div class="games">
+
+
+<!-- FREE FIRE MAX -->
+
+<div
+class="game"
+onclick="selectGame(this,'Free Fire MAX')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/free-fire.png"
+alt="Free Fire MAX"
+onerror="logoError(this,'🔥')">
+
+</div>
+
+<h3>
+    Free Fire MAX
+</h3>
+
+<p>
+    باتل رويال
+</p>
+
+</div>
+
+
+<!-- FREE FIRE -->
+
+<div
+class="game"
+onclick="selectGame(this,'Free Fire')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/free-fire.png"
+alt="Free Fire"
+onerror="logoError(this,'🔥')">
+
+</div>
+
+<h3>
+    Free Fire
+</h3>
+
+<p>
+    باتل رويال
+</p>
+
+</div>
+
+
+<!-- CALL OF DUTY -->
+
+<div
+class="game"
+onclick="selectGame(this,'Call of Duty Mobile')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/call-of-duty.png"
+alt="Call of Duty Mobile"
+onerror="logoError(this,'🎯')">
+
+</div>
+
+<h3>
+    Call of Duty Mobile
+</h3>
+
+<p>
+    تصويب
+</p>
+
+</div>
+
+
+<!-- PUBG -->
+
+<div
+class="game"
+onclick="selectGame(this,'PUBG Mobile')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/pubg.png"
+alt="PUBG Mobile"
+onerror="logoError(this,'🪖')">
+
+</div>
+
+<h3>
+    PUBG Mobile
+</h3>
+
+<p>
+    باتل رويال
+</p>
+
+</div>
+
+
+<!-- MINECRAFT -->
+
+<div
+class="game"
+onclick="selectGame(this,'Minecraft')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/minecraft.png"
+alt="Minecraft"
+onerror="logoError(this,'⛏️')">
+
+</div>
+
+<h3>
+    Minecraft
+</h3>
+
+<p>
+    عالم مفتوح
+</p>
+
+</div>
+
+
+<!-- BLOOD STRIKE -->
+
+<div
+class="game"
+onclick="selectGame(this,'Blood Strike')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://img.icons8.com/color/144/crossfire.png"
+alt="Blood Strike"
+onerror="logoError(this,'⚔️')">
+
+</div>
+
+<h3>
+    Blood Strike
+</h3>
+
+<p>
+    تصويب
+</p>
+
+</div>
+
+
+<!-- eFOOTBALL -->
+
+<div
+class="game"
+onclick="selectGame(this,'eFootball')">
+
+<div class="game-check">
+    ✓
+</div>
+
+<div class="game-logo">
+
+<img
+src="https://play-lh.googleusercontent.com/11leBMpjzZ46KPQoOmAhGqVRZKjXDFR2yWjcFXADZjtCxtImk75fUhl5nVAwMZuTVscucLBgESWSHjL-7IuF"
+alt="eFootball"
+onerror="logoError(this,'⚽')">
+
+</div>
+
+<h3>
+    eFootball
+</h3>
+
+<p>
+    كرة القدم
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section class="section" id="settings">
+
+<div class="section-title">
+
+<h2>
+    ⚙️ إعدادات ZYRON
+</h2>
+
+<span id="settingsStatus">
+    اختر الهاتف واللعبة أولاً
+</span>
+
+</div>
+
+
+<div class="settings">
+
+
+<div class="setting-box">
+
+<h3 id="sensitivityTitle">
+    🎯 الحساسية المقترحة
+</h3>
+
+<div class="setting-row">
+
+<span id="generalLabel">
+    عام
+</span>
+
+<strong id="general">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span id="redDotLabel">
+    النقطة الحمراء
+</span>
+
+<strong id="redDot">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span id="scope2Label">
+    منظار 2X
+</span>
+
+<strong id="scope2">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span id="scope4Label">
+    منظار 4X
+</span>
+
+<strong id="scope4">
+    --
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="setting-box">
+
+<h3>
+    🎨 الرسومات والأداء
+</h3>
+
+<div class="setting-row">
+
+<span>
+    الرسومات
+</span>
+
+<strong id="graphics">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span>
+    معدل الإطارات
+</span>
+
+<strong id="fps">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span>
+    المؤثرات
+</span>
+
+<strong id="effects">
+    --
+</strong>
+
+</div>
+
+<div class="setting-row">
+
+<span>
+    نمط الأداء
+</span>
+
+<strong id="mode">
+    --
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="setting-box">
+
+<h3 id="rangeTitle">
+    📊 دقة الحساسية
+</h3>
+
+<input
+class="range"
+id="sensitivityRange"
+type="range"
+min="0"
+max="100"
+value="85"
+oninput="updateRange()">
+
+<div
+style="
+text-align:center;
+font-size:35px;
+font-weight:900;
+color:#20d5ff;
+margin-top:15px"
+id="rangeValue">
+
+85
+
+</div>
+
+<div class="setting-row">
+
+<span>
+    الهدف
+</span>
+
+<strong id="rangeGoal">
+    سلاسة + تحكم
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PERFORMANCE -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+    📈 تحليل الأداء
+</h2>
+
+<span>
+    إعدادات تقديرية حسب مواصفات الجهاز
+</span>
+
+</div>
+
+
+<div class="sensitivity">
+
+
+<div class="score-box">
+
+<div class="scores">
+
+
+<div class="score">
+
+<div
+class="score-number"
+id="scoreGeneral">
+
+92
+
+</div>
+
+<div class="score-name">
+    الحساسية العامة
+</div>
+
+</div>
+
+
+<div class="score">
+
+<div
+class="score-number"
+id="scoreAim">
+
+83
+
+</div>
+
+<div class="score-name">
+    التصويب
+</div>
+
+</div>
+
+
+<div class="score">
+
+<div
+class="score-number"
+id="scoreHead">
+
+88
+
+</div>
+
+<div class="score-name">
+    دقة التصويب
+</div>
+
+</div>
+
+
+<div class="score">
+
+<div
+class="score-number"
+id="scoreMove">
+
+80
+
+</div>
+
+<div class="score-name">
+    الحركة
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="recommendation">
+
+<h3>
+    ⚡ الإعداد المقترح
+</h3>
+
+<div class="recommendation-row">
+
+<span>
+    الجودة
+</span>
+
+<strong id="recQuality">
+    --
+</strong>
+
+</div>
+
+<div class="recommendation-row">
+
+<span>
+    FPS
+</span>
+
+<strong id="recFPS">
+    --
+</strong>
+
+</div>
+
+<div class="recommendation-row">
+
+<span>
+    الحساسية
+</span>
+
+<strong id="recSensitivity">
+    --
+</strong>
+
+</div>
+
+<div class="recommendation-row">
+
+<span>
+    الأداء
+</span>
+
+<strong id="recPerformance">
+    --
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TIPS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+    💡 نصائح ZYRON
+</h2>
+
+</div>
+
+
+<div class="tips">
+
+
+<div class="tip">
+
+<h3>
+    🎯 الحساسية
+</h3>
+
+<p>
+استعمل الإعداد المقترح كنقطة بداية،
+ثم عدّل الحساسية تدريجياً حسب طريقة لعبك.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<h3>
+    🚀 الأداء
+</h3>
+
+<p>
+إذا كان الهاتف ضعيفاً، خفّض الرسومات
+وارفع معدل الإطارات عندما يكون ذلك متاحاً.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<h3>
+    🌡️ الحرارة
+</h3>
+
+<p>
+الحرارة المرتفعة يمكن أن تؤثر مؤقتاً
+في أداء الجهاز أثناء اللعب.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CODES -->
+
+<section class="section" id="ff-symbols">
+
+<div class="section-title">
+
+<h2>
+    🔥 رموز وأكواد زخرفة فري فاير
+</h2>
+
+<span>
+    رموز النامتاغ والبروفايل للألعاب
+</span>
+
+</div>
+
+
+<div class="codes-grid">
+
+
+<div class="code-card">
+
+<div>
+
+<h3>
+    رمز رأس الخروف / القرون
+</h3>
+
+<p>
+رمز للزخرفة.
+</p>
+
+</div>
+
+<div class="code-box">
+
+<code>
+꧁༺ ٩ϯ۶ ༻꧂
+</code>
+
+<button
+class="copy-btn"
+onclick="copyText('꧁༺ ٩ϯ۶ ༻꧂')">
+
+نسخ
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="code-card">
+
+<div>
+
+<h3>
+    رمز القرون والشيطان
+</h3>
+
+<p>
+شكل زخرفي إضافي للأسماء والبروفايلات.
+</p>
+
+</div>
+
+<div class="code-box">
+
+<code>
+╰‿╯ ѯ ╰‿╯
+</code>
+
+<button
+class="copy-btn"
+onclick="copyText('╰‿╯ ѯ ╰‿╯')">
+
+نسخ
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="code-card">
+
+<div>
+
+<h3>
+    كود اللون الأحمر
+</h3>
+
+<p>
+كود لوني للحقول التي تدعم تنسيق الألوان.
+</p>
+
+</div>
+
+<div class="code-box">
+
+<code>
+[FF0000]
+</code>
+
+<button
+class="copy-btn"
+onclick="copyText('[FF0000]')">
+
+نسخ
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="code-card">
+
+<div>
+
+<h3>
+    كود اللون الأزرق النيون
+</h3>
+
+<p>
+لون متناسق مع تصميم ZYRON.
+</p>
+
+</div>
+
+<div class="code-box">
+
+<code>
+[00D9FF]
+</code>
+
+<button
+class="copy-btn"
+onclick="copyText('[00D9FF]')">
+
+نسخ
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+ZYRON Game Optimizer © 2026
+
+<br>
+
+أداة لإعدادات الألعاب وتحسين تجربة اللعب
+بدون غش أو تعديل ملفات الألعاب.
+
+</footer>
+
+</main>
+
+
+<div
+class="toast"
+id="toast">
+</div>
+
+
+<script>
+
+let selectedGame = "";
+
+
+/* =========================
+   LOGO FALLBACK
+========================= */
+
+function logoError(image,emoji){
+
+    if(!image) return;
+
+    const box = image.parentElement;
+
+    image.remove();
+
+    box.textContent = emoji;
+
+}
+
+
+/* =========================
+   SELECT GAME
+========================= */
+
+function selectGame(element,name){
+
+    document
+    .querySelectorAll(".game")
+    .forEach(game=>{
+
+        game.classList.remove("selected");
+
+    });
+
+    element.classList.add("selected");
+
+    selectedGame = name;
+
+    document
+    .getElementById("settingsStatus")
+    .textContent =
+        "اللعبة المحددة: " + name;
+
+    showToast(
+        "🎮 تم اختيار " + name
+    );
+
+    generateSettings(false);
+
+}
+
+
+/* =========================
+   GENERATE SETTINGS
+========================= */
+
+function generateSettings(showMessage=true){
+
+    if(!selectedGame){
+
+        showToast(
+            "🎮 اختر اللعبة أولاً"
+        );
+
+        document
+        .getElementById("games")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+        return;
+
+    }
+
+
+    const ram =
+        Number(
+            document
+            .getElementById("ram")
+            .value
+        ) || 4;
+
+
+    const cpu =
+        document
+        .getElementById("cpu")
+        .value;
+
+
+    const hz =
+        document
+        .getElementById("hz")
+        .value;
+
+
+    /* eFOOTBALL */
+
+    if(selectedGame === "eFootball"){
+
+        generateEfootballSettings(
+            ram,
+            cpu,
+            hz,
+            showMessage
+        );
+
+        return;
+
+    }
+
+
+    /* REST OF GAMES */
+
+    document
+    .getElementById("sensitivityTitle")
+    .textContent =
+        "🎯 الحساسية المقترحة";
+
+
+    document
+    .getElementById("generalLabel")
+    .textContent =
+        "عام";
+
+
+    document
+    .getElementById("redDotLabel")
+    .textContent =
+        "النقطة الحمراء";
+
+
+    document
+    .getElementById("scope2Label")
+    .textContent =
+        "منظار 2X";
+
+
+    document
+    .getElementById("scope4Label")
+    .textContent =
+        "منظار 4X";
+
+
+    document
+    .getElementById("rangeTitle")
+    .textContent =
+        "📊 دقة الحساسية";
+
+
+    document
+    .getElementById("rangeGoal")
+    .textContent =
+        "سلاسة + تحكم";
+
+
+    let base = 80;
+
+
+    if(ram >= 8){
+
+        base += 10;
+
+    }
+
+    else if(ram >= 6){
+
+        base += 6;
+
+    }
+
+    else if(ram <= 3){
+
+        base -= 10;
+
+    }
+
+
+    if(cpu === "قوي جداً"){
+
+        base += 8;
+
+    }
+
+    else if(cpu === "قوي"){
+
+        base += 5;
+
+    }
+
+    else if(cpu === "ضعيف"){
+
+        base -= 8;
+
+    }
+
+
+    base =
+        Math.max(
+            55,
+            Math.min(99,base)
+        );
+
+
+    document
+    .getElementById("general")
+    .textContent =
+        base;
+
+
+    document
+    .getElementById("redDot")
+    .textContent =
+        Math.max(60,base-5);
+
+
+    document
+    .getElementById("scope2")
+    .textContent =
+        Math.max(55,base-10);
+
+
+    document
+    .getElementById("scope4")
+    .textContent =
+        Math.max(50,base-15);
+
+
+    if(ram <= 3){
+
+        document
+        .getElementById("graphics")
+        .textContent =
+            "منخفضة";
+
+        document
+        .getElementById("fps")
+        .textContent =
+            "30 FPS";
+
+        document
+        .getElementById("effects")
+        .textContent =
+            "منخفضة";
+
+        document
+        .getElementById("mode")
+        .textContent =
+            "أداء";
+
+    }
+
+    else if(ram <= 6){
+
+        document
+        .getElementById("graphics")
+        .textContent =
+            "متوسطة";
+
+        document
+        .getElementById("fps")
+        .textContent =
+            "60 FPS";
+
+        document
+        .getElementById("effects")
+        .textContent =
+            "متوسطة";
+
+        document
+        .getElementById("mode")
+        .textContent =
+            "متوازن";
+
+    }
+
+    else{
+
+        document
+        .getElementById("graphics")
+        .textContent =
+            "عالية";
+
+        document
+        .getElementById("fps")
+        .textContent =
+
+            hz.includes("120") ||
+            hz.includes("144") ||
+            hz.includes("165")
+
+            ? "90+ FPS"
+
+            : "60 FPS";
+
+
+        document
+        .getElementById("effects")
+        .textContent =
+            "عالية";
+
+        document
+        .getElementById("mode")
+        .textContent =
+            "أداء مرتفع";
+
+    }
+
+
+    document
+    .getElementById("scoreGeneral")
+    .textContent =
+        base;
+
+
+    document
+    .getElementById("scoreAim")
+    .textContent =
+        Math.max(60,base-5);
+
+
+    document
+    .getElementById("scoreHead")
+    .textContent =
+        Math.max(60,base-2);
+
+
+    document
+    .getElementById("scoreMove")
+    .textContent =
+        Math.max(60,base-8);
+
+
+    document
+    .getElementById("recQuality")
+    .textContent =
+        document
+        .getElementById("graphics")
+        .textContent;
+
+
+    document
+    .getElementById("recFPS")
+    .textContent =
+        document
+        .getElementById("fps")
+        .textContent;
+
+
+    document
+    .getElementById("recSensitivity")
+    .textContent =
+        base + "%";
+
+
+    document
+    .getElementById("recPerformance")
+    .textContent =
+
+        base >= 90
+        ? "ممتاز"
+
+        : base >= 75
+        ? "جيد جداً"
+
+        : "متوسط";
+
+
+    if(showMessage){
+
+        showToast(
+            "🚀 تم إنشاء إعدادات " +
+            selectedGame
+        );
+
+        document
+        .getElementById("settings")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =========================
+   eFOOTBALL SETTINGS
+========================= */
+
+function generateEfootballSettings(
+    ram,
+    cpu,
+    hz,
+    showMessage=true
+){
+
+    document
+    .getElementById("sensitivityTitle")
+    .textContent =
+        "⚽ إعدادات التحكم eFootball";
+
+
+    document
+    .getElementById("generalLabel")
+    .textContent =
+        "استجابة التحكم";
+
+
+    document
+    .getElementById("redDotLabel")
+    .textContent =
+        "سرعة التمرير";
+
+
+    document
+    .getElementById("scope2Label")
+    .textContent =
+        "استجابة المراوغة";
+
+
+    document
+    .getElementById("scope4Label")
+    .textContent =
+        "دقة التسديد";
+
+
+    document
+    .getElementById("rangeTitle")
+    .textContent =
+        "🎮 مستوى استجابة التحكم";
+
+
+    document
+    .getElementById("rangeGoal")
+    .textContent =
+        "تحكم + سلاسة";
+
+
+    let score = 70;
+
+
+    if(ram >= 12){
+
+        score += 15;
+
+    }
+
+    else if(ram >= 8){
+
+        score += 12;
+
+    }
+
+    else if(ram >= 6){
+
+        score += 7;
+
+    }
+
+    else if(ram <= 3){
+
+        score -= 12;
+
+    }
+
+
+    if(cpu === "قوي جداً"){
+
+        score += 12;
+
+    }
+
+    else if(cpu === "قوي"){
+
+        score += 8;
+
+    }
+
+    else if(cpu === "متوسط"){
+
+        score += 3;
+
+    }
+
+    else if(cpu === "ضعيف"){
+
+        score -= 8;
+
+    }
+
+
+    if(
+        hz.includes("120") ||
+        hz.includes("144") ||
+        hz.includes("165")
+    ){
+
+        score += 6;
+
+    }
+
+    else if(hz.includes("90")){
+
+        score += 3;
+
+    }
+
+
+    score =
+        Math.max(
+            55,
+            Math.min(99,score)
+        );
+
+
+    document
+    .getElementById("general")
+    .textContent =
+        score;
+
+
+    document
+    .getElementById("redDot")
+    .textContent =
+        Math.max(50,score-3);
+
+
+    document
+    .getElementById("scope2")
+    .textContent =
+        Math.max(50,score-5);
+
+
+    document
+    .getElementById("scope4")
+    .textContent =
+        Math.max(50,score-7);
+
+
+    let graphics;
+    let fps;
+    let effects;
+    let mode;
+
+
+    if(ram <= 3){
+
+        graphics = "منخفضة";
+        fps = "30 FPS";
+        effects = "منخفضة";
+        mode = "أداء";
+
+    }
+
+    else if(ram <= 4){
+
+        graphics = "منخفضة";
+        fps = "30–45 FPS";
+        effects = "متوسطة";
+        mode = "أداء";
+
+    }
+
+    else if(ram <= 6){
+
+        graphics = "متوسطة";
+        fps = "45–60 FPS";
+        effects = "متوسطة";
+        mode = "متوازن";
+
+    }
+
+    else if(ram <= 8){
+
+        graphics = "متوسطة / عالية";
+        fps = "60 FPS";
+        effects = "عالية";
+        mode = "متوازن+";
+
+    }
+
+    else{
+
+        graphics = "عالية";
+
+        fps =
+            (
+                hz.includes("120") ||
+                hz.includes("144") ||
+                hz.includes("165")
+            )
+            ? "60+ FPS"
+            : "60 FPS";
+
+        effects = "عالية";
+        mode = "أداء مرتفع";
+
+    }
+
+
+    document
+    .getElementById("graphics")
+    .textContent =
+        graphics;
+
+
+    document
+    .getElementById("fps")
+    .textContent =
+        fps;
+
+
+    document
+    .getElementById("effects")
+    .textContent =
+        effects;
+
+
+    document
+    .getElementById("mode")
+    .textContent =
+        mode;
+
+
+    document
+    .getElementById("scoreGeneral")
+    .textContent =
+        score;
+
+
+    document
+    .getElementById("scoreAim")
+    .textContent =
+        Math.max(55,score-3);
+
+
+    document
+    .getElementById("scoreHead")
+    .textContent =
+        Math.max(55,score-5);
+
+
+    document
+    .getElementById("scoreMove")
+    .textContent =
+        Math.max(55,score-2);
+
+
+    document
+    .getElementById("recQuality")
+    .textContent =
+        graphics;
+
+
+    document
+    .getElementById("recFPS")
+    .textContent =
+        fps;
+
+
+    document
+    .getElementById("recSensitivity")
+    .textContent =
+        score + "%";
+
+
+    document
+    .getElementById("recPerformance")
+    .textContent =
+
+        score >= 90
+        ? "ممتاز جداً"
+
+        : score >= 80
+        ? "ممتاز"
+
+        : score >= 70
+        ? "جيد"
+
+        : "متوسط";
+
+
+    document
+    .getElementById("sensitivityRange")
+    .value =
+        score;
+
+
+    document
+    .getElementById("rangeValue")
+    .textContent =
+        score;
+
+
+    if(showMessage){
+
+        showToast(
+            "⚽ تم إنشاء إعدادات eFootball"
+        );
+
+        document
+        .getElementById("settings")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =========================
+   PHONE INFO
+========================= */
+
+function updateDevice(){
+
+    const brand =
+        document
+        .getElementById("brand")
+        .value;
+
+
+    const ram =
+        document
+        .getElementById("ram")
+        .value;
+
+
+    const cpu =
+        document
+        .getElementById("cpu")
+        .value;
+
+
+    const hz =
+        document
+        .getElementById("hz")
+        .value;
+
+
+    document
+    .getElementById("showBrand")
+    .textContent =
+        brand || "--";
+
+
+    document
+    .getElementById("showRam")
+    .textContent =
+        ram
+        ? ram + "GB"
+        : "--";
+
+
+    document
+    .getElementById("showCpu")
+    .textContent =
+        cpu || "--";
+
+
+    document
+    .getElementById("showHz")
+    .textContent =
+        hz || "--";
+
+
+    if(selectedGame){
+
+        generateSettings(false);
+
+    }
+
+}
+
+
+/* =========================
+   UPDATE PHONE
+========================= */
+
+[
+    "brand",
+    "ram",
+    "cpu",
+    "quality",
+    "hz"
+
+].forEach(id=>{
+
+    document
+    .getElementById(id)
+    .addEventListener(
+        "change",
+        updateDevice
+    );
+
+});
+
+
+/* =========================
+   SENSITIVITY RANGE
+========================= */
+
+function updateRange(){
+
+    const value =
+        document
+        .getElementById(
+            "sensitivityRange"
+        )
+        .value;
+
+
+    document
+    .getElementById("rangeValue")
+    .textContent =
+        value;
+
+}
+
+
+/* =========================
+   COPY
+========================= */
+
+async function copyText(text){
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+        showToast(
+            "📋 تم نسخ: " + text
+        );
+
+    }
+
+    catch(err){
+
+        showToast(
+            "فشل النسخ تلقائياً"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function shareLink(){
+
+    const url =
+        window.location.href;
+
+
+    const text =
+        "🎮 ZYRON Game Optimizer\n\n" +
+        "إعدادات الألعاب حسب مواصفات هاتفك.\n\n" +
+        "🔗 الرابط:\n" +
+        url;
+
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+
+                title:
+                    "ZYRON Game Optimizer",
+
+                text:text,
+
+                url:url
+
+            });
+
+            return;
+
+        }
+
+        catch(error){}
+
+    }
+
+
+    try{
+
+        await navigator.clipboard
+        .writeText(url);
+
+        showToast(
+            "🔗 تم نسخ رابط الموقع"
+        );
+
+    }
+
+    catch(error){
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value =
+            url;
+
+
+        textarea.style.position =
+            "fixed";
+
+
+        textarea.style.opacity =
+            "0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.focus();
+
+        textarea.select();
+
+
+        try{
+
+            document.execCommand(
+                "copy"
+            );
+
+            showToast(
+                "🔗 تم نسخ رابط الموقع"
+            );
+
+        }
+
+        catch(e){
+
+            showToast(
+                "انسخ الرابط من المتصفح"
+            );
+
+        }
+
+
+        textarea.remove();
+
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document
+        .getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(()=>{
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },3500);
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function scrollToSection(id){
+
+    const element =
+        document
+        .getElementById(id);
+
+
+    if(element){
+
+        element.scrollIntoView({
+
+            behavior:"smooth"
+
+        });
+
+    }
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goTop(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
