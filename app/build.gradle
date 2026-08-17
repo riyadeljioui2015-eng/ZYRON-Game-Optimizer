@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.zyron.gameoptimizer'
+
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.zyron.gameoptimizer'
+        minSdk 23
+        targetSdk 35
+
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+
+            proguardFiles(
+                getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+                ),
+                'proguard-rules.pro'
+            )
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        resources {
+            excludes += [
+                '/META-INF/{AL2.0,LGPL2.1}'
+            ]
+        }
+    }
+
+    /*
+     * نسخ ملفات الموقع إلى Android Assets
+     */
+    tasks.register("copyWebFiles", Copy) {
+
+        from(rootProject.projectDir) {
+
+            include "index.html"
+            include "background.png"
+        }
+
+        into(layout.projectDirectory.dir(
+            "src/main/assets"
+        ))
+    }
+
+    preBuild.dependsOn("copyWebFiles")
+}
